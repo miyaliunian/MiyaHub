@@ -8,6 +8,12 @@
 >
 >   
 
+## 掘金
+
+> 此项目详细说明我的掘金，地址：
+>
+> [米亚流年：MiyaHub]: https://juejin.cn/post/7008418805428781063
+
 ## 技术栈
 
 > KOA、dotenv、jsonwebtoken、koa-bodyparser、koa-router、mysql2
