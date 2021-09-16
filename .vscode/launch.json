@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "console": "integratedTerminal",
+            "internalConsoleOptions": "neverOpen",
+            "name": "nodemon-debugger",
+            "program": "${workspaceFolder}/src/main.js",
+            "request": "launch",
+            "restart": true,
+            "runtimeExecutable": "/usr/local/bin/nodemon",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "type": "pwa-node"
+        },
+    ]
+}
