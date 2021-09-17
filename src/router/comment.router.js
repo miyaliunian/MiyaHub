@@ -7,7 +7,8 @@ const {
     create,
     reply, 
     update,
-    remove
+    remove,
+    list
 }  =require('../controller/comment_controller')
 const commentRouter = new Router({
     prefix: '/comment'
@@ -25,4 +26,6 @@ commentRouter.patch('/:commentId',verifyAuth, verifyPermission ,update)
 // 删除评论
 commentRouter.delete('/:commentId',verifyAuth, verifyPermission ,remove)
 
+//获取列表
+commentRouter.get('/', list)
 module.exports = commentRouter

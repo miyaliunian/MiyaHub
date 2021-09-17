@@ -13,7 +13,25 @@ class MomentService {
         m.content,
         m.createAt,
         m.updateAt,
-        JSON_OBJECT('id', u.id, 'name', u.name) author FROM moment m LEFT JOIN user u ON m.user_id = u.id  WHERE m.id = ?`;
+        JSON_OBJECT( 'id', u.id, 'name', u.NAME ) author,
+        JSON_ARRAYAGG(
+            JSON_OBJECT(
+                'id',
+                c.id,
+                'content',
+                c.content,
+                'createTime',
+                c.createAt,
+                'user',
+            JSON_OBJECT( 'id', cu.id, 'name', cu.NAME )) 
+        ) comments 
+    FROM
+        moment m
+        LEFT JOIN USER u ON m.user_id = u.id
+        LEFT JOIN comment c ON c.moment_id = m.id
+        LEFT JOIN user cu ON c.user_id = cu.id 
+    WHERE
+        m.id = ?`;
         const result = await connection.execute(statement, [ momentId ])
         return result[0]
     }
@@ -25,7 +43,9 @@ class MomentService {
         m.content,
         m.createAt,
         m.updateAt,
-        JSON_OBJECT('id', u.id, 'name', u.name) author FROM moment m LEFT JOIN user u ON m.user_id = u.id  LIMIT ?, ?`;
+        JSON_OBJECT('id', u.id, 'name', u.name) author,
+        (SELECT COUNT(*) FROM comment cm WHERE cm.moment_id = m.id )commentCount
+        FROM moment m LEFT JOIN user u ON m.user_id = u.id  LIMIT ?, ?`;
         const result = await connection.execute(statement, [ offset,  size])
         return result[0]
     }

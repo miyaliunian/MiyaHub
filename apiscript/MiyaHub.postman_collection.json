@@ -1,0 +1,383 @@
+{
+	"info": {
+		"_postman_id": "be843ded-c61f-435e-a7e0-900f4db777c2",
+		"name": "MiyaHub",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "用户登录注册",
+			"item": [
+				{
+					"name": "注册接口",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"test2\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/users/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "登录接口",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"前端逗逗飞\",\n    \"password\": \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "动态相关接口",
+			"item": [
+				{
+					"name": "获取动态列表:参数为分页参数",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6IuWJjeerr-mAl-mAl-mjniIsImlhdCI6MTYzMTg0MDU1MywiZXhwIjoxNjMxOTI2OTUzfQ.XD-ov3FfW2fBFG706Ixi2FWEUE2JkDnomMAIbgVnUo8cqg_GClmgmFumReokcIT3th-qVRPuhUc40Yivx0eJ1i03irln6vWtoU-RaYFFgyeeDsBTTXrSRXiRI-LbQRjtio0JLQUG1VADvTZxMG-epvcR7TKFZG8L6KyMUT70_qk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/moment?offset=0&size=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"moment"
+							],
+							"query": [
+								{
+									"key": "offset",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "发布动态",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6IuWJjeerr-mAl-mAl-mjniIsImlhdCI6MTYzMTc1MjkyMCwiZXhwIjoxNjMxODM5MzIwfQ.wtwAI8koX0l6T5vaOOy5rdn5d34kfetMRwHQkJnFN6YTwZvjZk9E2PlO-XWAakhw1bh3X6CG84p6ph173U747746GBRdBzaPWkqdhiolWEDGQdNslvUeRisPVDE_ppgTPtjk4EY2RgiQYiEzIyCr-a6KbSjDgQzYekmvHEYo660",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"前端逗逗飞\",\n  \"password\": \"123456\",\n  \"content\": \"快手，直到春节前，这个名字还只是在知乎上被黑地体无完肤的一个软件，当然，并不是唯一一个，不过这并不重要。春节的时候，我回到乡下的农村，乡下信号极差，只能勉强看微信，村里有一个公共WiFi，至少还能连上网，一群年轻人就在那里蹭WiFi，不断用方言点评着某个美女的身材多好看，某个人又做了什么蠢事，哪个游戏主播多厉害，语言粗俗，声音还很肆无忌惮。我对他们全无好感，不过就在旁边默默拿着手机看着番剧，音量也不敢调太大，怕伤耳朵。这时候其中一\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/moment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"moment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "根据动态Id查询动态详情",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6IuWJjeerr-mAl-mAl-mjniIsImlhdCI6MTYzMTg0NDY0OSwiZXhwIjoxNjMxOTMxMDQ5fQ.QpkdX7No2tbjdYEotYtKwCoFPzE922-jFl8WYIVOc0btYVI9xOnUBZTqvh1hg5lQzk5jDhRwWBtMbPtwKPazTNFSG48GQIyl6PiwZsEZssgCZdM9vw4KjmXkQBYmYEjZjUp6jW4OuJ6raAVAlo3jbGHIOW97OsFlI2Tay5IaBEU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/moment/4",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"moment",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "评论接口",
+			"item": [
+				{
+					"name": "动态评论回复",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6IuWJjeerr-mAl-mAl-mjniIsImlhdCI6MTYzMTc1MjkyMCwiZXhwIjoxNjMxODM5MzIwfQ.wtwAI8koX0l6T5vaOOy5rdn5d34kfetMRwHQkJnFN6YTwZvjZk9E2PlO-XWAakhw1bh3X6CG84p6ph173U747746GBRdBzaPWkqdhiolWEDGQdNslvUeRisPVDE_ppgTPtjk4EY2RgiQYiEzIyCr-a6KbSjDgQzYekmvHEYo660",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"momentId\": 19,\n    \"content\": \"评论的回复\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/comment/4/reply",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"comment",
+								"4",
+								"reply"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "修改动态评论",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6IuWJjeerr-mAl-mAl-mjniIsImlhdCI6MTYzMTg0MTQ2MiwiZXhwIjoxNjMxOTI3ODYyfQ.rVoYc0wKc9aoKbXd-9f_0vbukEP1YEa1F0GNPtJnRtSt-ZAbnZcjjAAIj_JvAfzdfT_tjuzyuORfWbJaKiGLp6hIaWSHpJaGdrWRkmu9wSNEFM3dfRAu7RCQaovtOzRZrM0huhdA3YORT6o6FXrvrB-Gf_7qsBYx_EDWLvJPtD0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": \"最新修改的评论\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/comment/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"comment",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "动态评论",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6IuWJjeerr-mAl-mAl-mjniIsImlhdCI6MTYzMTg0MTg2MywiZXhwIjoxNjMxOTI4MjYzfQ.Ijb99XRtah5I1j7H6qf8WjnTNWB0HoNHjCb11pHyAKHByhnm0WxjuaIoDeRYAj9bzgKJOXKDkI8BA5wmeEXkBXHpViGmMNK9ASDzrx7ybMA_-I9Ij1dkbHiJwoZB6qYDauwajPbXrGOtk7Y-NR0uGqW9yoOY23YDrnjnM7b5Ch8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"momentId\": \"4\",\n    \"content\": \"对动态序号4的评论\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/comment/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"comment",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "用动态Id查询此动态对应的评论信息",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/comment?momentId=4",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"comment"
+							],
+							"query": [
+								{
+									"key": "momentId",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "标签接口",
+			"item": [
+				{
+					"name": "创建标签",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6IuWJjeerr-mAl-mAl-mjniIsImlhdCI6MTYzMTg0NjcyNiwiZXhwIjoxNjMxOTMzMTI2fQ.dUcHsMd9xUdBJTlJS3Bw5uJye7bKzRWj0xdz7xZDX_lwmZQ7uGRT01iFMX3hUbUO5E8-s12nmQSSL-bee-gIPse0CauK5sllBzg-3GuzpTaJ0I-5YrYfAtF6JOEoLIJOpzhxqAw36OCyl_SRJvxgI0yOncbfmqzJt7u1hmU6Qf8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/label",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"label"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

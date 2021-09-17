@@ -59,4 +59,4 @@
 
 > 将工程内的根目录文件夹下的`apiscript`直接拷贝到postman中 可以看到完整的接口
 >
-> ![](/Users/doudoufei/准备跳槽到字节/MiyaHub/screenshot/WX20210917-105929@2x.png)
+> ![](./screenshot/WX20210917-105929@2x.png)
