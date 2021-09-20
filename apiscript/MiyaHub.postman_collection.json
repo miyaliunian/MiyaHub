@@ -68,7 +68,7 @@
 			]
 		},
 		{
-			"name": "动态相关接口",
+			"name": "用户动态接口",
 			"item": [
 				{
 					"name": "获取动态列表:参数为分页参数",
@@ -187,6 +187,46 @@
 							"path": [
 								"moment",
 								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "动态添加标签",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6IuWJjeerr-mAl-mAl-mjniIsImlhdCI6MTYzMTk0MjUzMCwiZXhwIjoxNjMyMDI4OTMwfQ.saXFDD4DTUHkhXGGBF-oAXZiJ899XaKCRVIiFISrwuOo5GLGsdJHMzRhyVK6SZKWVg7lRz6Mr1Na2IAV2H1s7pC-etpbD6uLorTHPmKJ6qfS-DpgHyTX4wHAqcTzjuZt3rXF83VAUodcsw2pw3bFeuRV-7XW6vxFGS_gmYeVes4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"labels\": [\"励志\", \"奋斗\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/moment/4/labels",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"moment",
+								"4",
+								"labels"
 							]
 						}
 					},
@@ -356,13 +396,22 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6IuWJjeerr-mAl-mAl-mjniIsImlhdCI6MTYzMTg0NjcyNiwiZXhwIjoxNjMxOTMzMTI2fQ.dUcHsMd9xUdBJTlJS3Bw5uJye7bKzRWj0xdz7xZDX_lwmZQ7uGRT01iFMX3hUbUO5E8-s12nmQSSL-bee-gIPse0CauK5sllBzg-3GuzpTaJ0I-5YrYfAtF6JOEoLIJOpzhxqAw36OCyl_SRJvxgI0yOncbfmqzJt7u1hmU6Qf8",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6IuWJjeerr-mAl-mAl-mjniIsImlhdCI6MTYzMTg0Njk5OCwiZXhwIjoxNjMxOTMzMzk4fQ.YT6i1JyVnf8qUpOBgxuxW3cuxgmjoOnxc6Y31L8zTXWtMXgfFJKehP4LC0ijEWWiCT1n3RaL1rczXHX79zu5OoL10Uz9LSHw3Tw-QymXtw6DuxrwnLNBAsmdE12BlFHL__vlY0_eeXGLynunLh0NMJ3_kZn7jhROeMqkUEuVLLg",
 									"type": "string"
 								}
 							]
 						},
 						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"美食\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://localhost:8000/label",
 							"protocol": "http",
@@ -372,6 +421,60 @@
 							"port": "8000",
 							"path": [
 								"label"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获取标签接口",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6IuWJjeerr-mAl-mAl-mjniIsImlhdCI6MTYzMTk0MjUzMCwiZXhwIjoxNjMyMDI4OTMwfQ.saXFDD4DTUHkhXGGBF-oAXZiJ899XaKCRVIiFISrwuOo5GLGsdJHMzRhyVK6SZKWVg7lRz6Mr1Na2IAV2H1s7pC-etpbD6uLorTHPmKJ6qfS-DpgHyTX4wHAqcTzjuZt3rXF83VAUodcsw2pw3bFeuRV-7XW6vxFGS_gmYeVes4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/label?limit=5&offset=0",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"label"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "5"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								}
 							]
 						}
 					},
