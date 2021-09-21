@@ -98,7 +98,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8000/moment?offset=0&size=10",
+							"raw": "http://localhost:8000/moment?offset=0&size=50",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -114,7 +114,7 @@
 								},
 								{
 									"key": "size",
-									"value": "10"
+									"value": "50"
 								}
 							]
 						}
@@ -175,7 +175,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://127.0.0.1:8000/moment/4",
+							"raw": "http://127.0.0.1:8000/moment/19",
 							"protocol": "http",
 							"host": [
 								"127",
@@ -186,7 +186,7 @@
 							"port": "8000",
 							"path": [
 								"moment",
-								"4"
+								"19"
 							]
 						}
 					},
@@ -227,6 +227,27 @@
 								"moment",
 								"4",
 								"labels"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "动态配图的图片",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/moment/images/04bd1d51e11c45d8d228ab922751bee3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"moment",
+								"images",
+								"04bd1d51e11c45d8d228ab922751bee3"
 							]
 						}
 					},
@@ -474,6 +495,152 @@
 								{
 									"key": "offset",
 									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "上传图像接口",
+			"item": [
+				{
+					"name": "头像上传",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6IuWJjeerr-mAl-mAl-mjniIsImlhdCI6MTYzMjEyMzUxMiwiZXhwIjoxNjMyMjA5OTEyfQ.ilitl49UHwWoDthopmRcjUxfmrfvRPgqK_JO5fGFr8ZXbDpTc4V0ww6_oM5wYVrd4YFTxOhTJaUC21T0r4v1MaGtvKAu53zSp5CxhxP8MqVm5HGsjE5to77DxGUjZG6Z18wJBnsnv-jjQV3ntQ4QtD6738YzUN29baeYZZ1UxjA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "/Users/doudoufei/Pictures/pap.er/_R95VMWyn7A.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/upload/avatar",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"upload",
+								"avatar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "获取头像",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6IuWJjeerr-mAl-mAl-mjniIsImlhdCI6MTYzMjEyMzUxMiwiZXhwIjoxNjMyMjA5OTEyfQ.ilitl49UHwWoDthopmRcjUxfmrfvRPgqK_JO5fGFr8ZXbDpTc4V0ww6_oM5wYVrd4YFTxOhTJaUC21T0r4v1MaGtvKAu53zSp5CxhxP8MqVm5HGsjE5to77DxGUjZG6Z18wJBnsnv-jjQV3ntQ4QtD6738YzUN29baeYZZ1UxjA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/users/3/avatar",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"users",
+								"3",
+								"avatar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "上传动态配图",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywibmFtZSI6IuWJjeerr-mAl-mAl-mjniIsImlhdCI6MTYzMjEyMzUxMiwiZXhwIjoxNjMyMjA5OTEyfQ.ilitl49UHwWoDthopmRcjUxfmrfvRPgqK_JO5fGFr8ZXbDpTc4V0ww6_oM5wYVrd4YFTxOhTJaUC21T0r4v1MaGtvKAu53zSp5CxhxP8MqVm5HGsjE5to77DxGUjZG6Z18wJBnsnv-jjQV3ntQ4QtD6738YzUN29baeYZZ1UxjA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "picture",
+									"type": "file",
+									"src": "/Users/doudoufei/Pictures/pap.er/_R95VMWyn7A.jpg"
+								},
+								{
+									"key": "picture",
+									"type": "file",
+									"src": "/Users/doudoufei/Pictures/pap.er/7mWnmo-pJgA.jpg"
+								},
+								{
+									"key": "picture",
+									"type": "file",
+									"src": "/Users/doudoufei/Pictures/pap.er/1jhykJUftOc.jpg"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/upload/pictures?momentId=20",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"upload",
+								"pictures"
+							],
+							"query": [
+								{
+									"key": "momentId",
+									"value": "20"
 								}
 							]
 						}

@@ -1,0 +1,7 @@
+#忽略node_modules
+/node_modules/
+#忽略图片文件夹
+/uploads/avatar
+/uploads/pictures
+#yarn
+yarn.lock
