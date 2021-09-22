@@ -60,3 +60,133 @@
 > 将工程内的根目录文件夹下的`apiscript`直接拷贝到postman中 可以看到完整的接口
 >
 > ![](./screenshot/WX20210917-105929@2x.png)
+
+## 阿里云部署
+
+> 自己购买服务器，然后通过terminal远程连接自己的云服务器
+>
+> ```shell
+> ssh root@47.93.34.95  // ip为云服务器的公网地址
+> ```
+>
+> 然后填写密码
+
+### DNF包管理工具安装NodeJS
+
+> 检查dnf是否可用
+>
+> ```shell
+> dnf --help
+> ```
+>
+> 查看NodeJS是否能被安装
+>
+> ```shell
+> dnf search nodejs
+> ```
+>
+> 如果想详细看下包的信息
+>
+> ```shell
+> dnf info nodejs
+> ```
+>
+> 安装nodejs, 有dnf上的nodejs版本太低了 之后我们还需要安装node的版本管理工具:n
+>
+> ```shell
+> dnf install nodejs
+> ```
+>
+> ```shell
+> npm i -g n
+> ```
+>
+> 然后安装最近版本的node
+>
+> ```shell
+> n install lts
+> n install latest
+> ```
+>
+> 然后通过n切换版本
+>
+> ```shell
+> n
+> ```
+>
+> 
+
+### DNF包管理工具安装MySQL-Server
+
+> 查找MySQL
+>
+> ```shell
+> dnf search mysql-server
+> ```
+>
+> 查看
+>
+> ```shell
+> dnf info mysql-server
+> ```
+>
+> 安装
+>
+> ```shell
+> dnf install mysql-server	
+> ```
+>
+> 安装成功之后需要启动mysql服务
+>
+> Active: **active (running)** 表示启动成功
+>
+> ```shell
+> // system control -> systemctl
+> systemctl start mysqld
+> //查看mysql服务 active表示启动成功
+> systemctl status mysqld
+> //随着系统一起启动
+> systemctl enable mysqld
+> ```
+>
+>
+> 由于通过命令行安装是不会设置账号密码 所以需要如下步骤单独设置mysql账号密码
+>
+> ```shell
+> mysql_secure_installation
+> //设置的过程中一定要注意运行远程连接
+> //设置成功后 在命令行输入查看是否能进入mysql
+> mysql -u root -p
+> ```
+>
+> 阿里云服务器开放3306端口
+>
+> 实例->安全组->配置规则->快速添加
+>
+> ![image-20210922112205788](/Users/doudoufei/Library/Application Support/typora-user-images/image-20210922112205788.png)
+>
+> 更新user表开启远程访问
+>
+> update user set host = '%' where user = 'root';
+>
+> 然后执行刷新
+>
+> flush privileges;
+>
+> 如果产生because of many connection errors，则清理
+>
+> flush hosts;
+
+### 安装Git
+
+> 安装Git
+>
+> ```shell
+> dnf search git
+> ```
+
+### Git Clone 项目
+
+> 从gitHub上拉取项目
+>
+> 
