@@ -16,7 +16,7 @@
 
 ## 技术栈
 
-> KOA、dotenv、jsonwebtoken、koa-bodyparser、koa-router、mysql2
+> KOA、dotenv、jsonwebtoken、koa-bodyparser、koa-router、mysql2、jimp
 
 ## 项目特点
 
@@ -24,14 +24,19 @@
 > - 前端工程化：项目中的动态参数都写在了.env文件，项目结构代码完全按照前端开发规范编写
 > - 实现了JWT，可以直接移植到实际的开发中
 >   - 在我们的实际场景业务开发中，我们也是通过token验证人员，
+> - 单文件上传
+> - 多文件上传
+> - 图片自动裁剪
 
 ## 项目业务流程
 
 > - 用户注册
+> - 用户添加头像
 > - 用户登录： 用户登录成功后，会返回此用户的用户名、密码、token
 >   - 在后续的业务流程中，需要携带此token
 > - 发表动态
 >   - 将token放到header中Authorization字段中
+> - 动态添加配图
 > - 对发表的动态进行评论
 > - 对评论编辑
 > - 对评论的删除
@@ -189,4 +194,138 @@
 
 > 从gitHub上拉取项目
 >
+> ```
+> git clone 项目地址
+> ```
+>
 > 
+
+## pm2启动node程序
+
+> 通过终端启动的node程序，那么如果终端关闭掉了呢
+>
+> - 那么这个是相当于启动的Node进程会被关闭
+> - 我们将无法继续访问服务器
+>
+> PM2是一个Node的进程管理器，可以使用它来管理Node的后台进程 在于在关闭终端时，Node进程会继续执行
+
+### CenterOS 安装PM2
+
+> 全局安装
+>
+> ```shell
+> npm i pm2 -g
+> ```
+>
+> 
+
+### PM2常用命令
+
+> pm2 start app.js # 启动app.js应用程序
+>
+> $ pm2 start app.js -i 4    ###  cluster mode 模式启动4个app.js的应用实例 可以设置负载均衡
+>
+> \# 4个应用程序会自动进行负载均衡
+>
+> $ pm2 start app.js --name="api" # 启动应用程序并命名为 "api"
+>
+> $ pm2 start app.js --watch   # 当文件变化时自动重启应用
+>
+> $ pm2 start script.sh     # 启动 bash 脚本
+>
+> $ pm2 list           # 列表 PM2 启动的所有的应用程序
+>
+> $ pm2 monit          # 显示每个应用程序的CPU和内存占用情况
+>
+> $ pm2 show [app-name]     # 显示应用程序的所有信息
+>
+> $ pm2 logs           # 显示所有应用程序的日志
+>
+> $ pm2 logs [app-name]     # 显示指定应用程序的日志
+>
+> $ pm2 flush            # 清空所有日志文件
+>
+> $ pm2 stop all         # 停止所有的应用程序
+>
+> $ pm2 stop 0          # 停止 id为 0的指定应用程序
+>
+> $ pm2 restart all       # 重启所有应用
+>
+> $ pm2 reload all        # 重启 cluster mode下的所有应用
+>
+> $ pm2 gracefulReload all    # Graceful reload all apps in cluster mode
+>
+> $ pm2 delete all        # 关闭并删除所有应用
+>
+> $ pm2 delete 0         # 删除指定应用 id 0
+>
+> $ pm2 scale api 10       # 把名字叫api的应用扩展到10个实例
+>
+> $ pm2 reset [app-name]     # 重置重启数量
+>
+> $ pm2 startup         # 创建开机自启动命令
+>
+> $ pm2 save           # 保存当前应用列表
+>
+> $ pm2 resurrect        # 重新加载保存的应用列表
+>
+> $ pm2 update          # Save processes, kill PM2 and restore processes
+>
+> $ pm2 generate         # Generate a sample json configuration file
+>
+> pm2文档地址：http://pm2.keymetrics.io/docs/usage/quick-start/
+
+## jenkins自动化部署
+
+> centerOS 安装JDK1.8
+>
+> ```shell
+> dnf install java-1.8.0-openjdk
+> ```
+>
+> 配置环境变量
+>
+> which java
+>
+> ls -lrt /usr/bin/java  //（也就是上一步查询出来的路径）
+>
+> 切换用户为root
+>
+> vi /etc/profile  
+>
+> 插入如下内容
+>
+> export JAVA_HOME=/usr/lib/jvm/java-1.8.0
+> export JRE_HOME=$JAVA_HOME/jre  
+> export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
+> export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib
+>
+> esc :wq
+
+### Jenkins下载安装
+
+> 启用Jenkins存储库。运行以下命令下载并导入GPG密钥：
+>
+> ```shell
+> sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat/jenkins.repo
+> sudo rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key
+> ```
+>
+> 安装Jenkins
+>
+> ```shell
+> dnf install denkins
+> ```
+>
+> 安装成功后 启动Jenkins
+>
+> ```shell
+> systemctl start jenkins
+> #查看jenkins运行状态
+> systemctl status jenkins
+> ```
+>
+> JenKins默认启动在8080端口 我们需要设置阿里云的安全组配置
+>
+> 
+

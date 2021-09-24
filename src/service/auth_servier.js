@@ -1,5 +1,5 @@
 const connection = require('../app/dataBase')
-
+const loggerProxy = require('../app/logConfig')
 class AuthService {
     async checkResource(tableName, id, userId) {
         const statement = `SELECT * FROM ${tableName} WHERE id= ? AND user_id= ?`   

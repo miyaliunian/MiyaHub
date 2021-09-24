@@ -1,9 +1,10 @@
 const connection = require('../app/dataBase')
+const loggerProxy = require('../app/logConfig')
 class MomentService {
     async create (userId, content) {
         const statement = `INSERT INTO moment (user_id, content) VALUES (?, ?)`
         const result = await connection.execute(statement, [userId, content])
-        console.log('插入的结果:',result)
+        loggerProxy.info(result[0])
         return result[0]
     }
 
@@ -52,6 +53,7 @@ class MomentService {
     GROUP BY
         m.id`;
         const result = await connection.execute(statement, [ momentId ])
+        loggerProxy.info(result[0])
         return result[0]
     }
 
@@ -71,18 +73,21 @@ class MomentService {
         LEFT JOIN USER u ON m.user_id = u.id
         LIMIT ?, ?`;
         const result = await connection.execute(statement, [ offset,  size])
+        loggerProxy.info(result[0])
         return result[0]
     }
 
     async momentUpdate(content, momentId) {
        const statement = `UPDATE moment SET content = ? WHERE id = ?`
        const result = await connection.execute(statement, [ content,  momentId])
+       loggerProxy.info(result[0])
        return result[0]      
     }
 
     async momentDeleteBymomentId(momentId) {
         const statement = `DELETE FROM moment WHERE id = ?`
         const result = await connection.execute(statement, [momentId])
+        loggerProxy.info(result[0])
         return result[0]     
     }
 
@@ -90,6 +95,7 @@ class MomentService {
     async hasLabel(momentId, labelId) {
         const statement = `SELECT * FROM moment_label WHERE moment_id = ? and label_id= ?`
         const [result] = await connection.execute(statement, [momentId, labelId])
+        loggerProxy.info(result[0])
         return result[0]
     }
 
@@ -98,9 +104,10 @@ class MomentService {
         const statement = `INSERT INTO moment_label (moment_id, label_id) VALUES(?, ?)`
          try {
             const [result] = await connection.execute(statement, [momentId, labelId])
+            loggerProxy.info(result[0])
             return result[0]      
          } catch (error) {
-             console.log(error);
+            loggerProxy.error(result)
          }   
     }
 }

@@ -6,9 +6,9 @@ const {
     UNAUTHORIZATION,
     UNPERMISSION
  } = require('../constants/error_types')
+const loggerProxy = require('./logConfig')
 const errorHandler = (error, ctx) => {
     let status, message
-    console.log('error-Type:', error.message)
     switch (error.message) {
         case NAME_OR_PASSWORD_IS_REQUIRED:
             status = 400 // 400表示请求有问题
@@ -41,6 +41,7 @@ const errorHandler = (error, ctx) => {
     }
     ctx.status = status
     ctx.body = message
+    loggerProxy.error(message)
 }
 
 module.exports = {
