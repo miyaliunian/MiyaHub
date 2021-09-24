@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "nodemon ./src/main.js"
+    "start": "nodemon ./src/main.js",
+    "pm2:start": "pm2 start ."
   },
   "keywords": [],
   "author": "",
